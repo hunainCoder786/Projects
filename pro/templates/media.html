@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Resources</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        h1 {
+            color: #1e88e5;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        .media-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #424242;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+        .media-item {
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .media-item:hover {
+            transform: scale(1.05);
+        }
+        .media-item img, .media-item video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .no-media-message {
+            text-align: center;
+            font-size: 1.2em;
+            color: #d32f2f;
+            margin: 20px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 1.1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Media Resources</h1>
+
+    <div class="media-section">
+        <h2>Images</h2>
+        <div class="media-grid">
+            {% if media_resources.images %}
+                {% for image in media_resources.images %}
+                    <div class="media-item">
+                        <img src="{{ image }}" alt="Image">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-media-message">No images found on this website.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="media-section">
+        <h2>Videos</h2>
+        <div class="media-grid">
+            {% if media_resources.videos %}
+                {% for video in media_resources.videos %}
+                    <div class="media-item">
+                        <video controls>
+                            <source src="{{ video }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-media-message">No videos found on this website.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <a href="/">Back to Performance Analyzer</a>
+</body>
+</html>
